@@ -2,12 +2,15 @@ package co.ogury.ferreolgodebarge.testapk;
 
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import io.presage.Presage;
 import io.presage.utils.IADHandler;
 import android.view.animation.TranslateAnimation;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.view.* ;
 import android.widget.ImageView;
@@ -107,9 +110,15 @@ public class MainActivity extends AppCompatActivity {
         //Rotate the Zizou
         final ImageView right = (ImageView) findViewById(R.id.RightZidane);
         final ImageView left = (ImageView) findViewById(R.id.leftZidane);
+        final ImageView view = (ImageView) findViewById(R.id.imageView);
+
+        DisplayMetrics dm = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics( dm );
+        int xDest = dm.widthPixels/2;
+        xDest -= (view.getMeasuredWidth()/2);
 
         //Zizou to the right
-        TranslateAnimation rightAnimation = new TranslateAnimation(0.0f, 400.0f,
+        TranslateAnimation rightAnimation = new TranslateAnimation(-xDest/2, xDest/2,
                 0.0f, 0.0f);
         rightAnimation.setDuration(5000);
         rightAnimation.setRepeatCount(5000);
@@ -117,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         rightAnimation.setFillAfter(true);
 
         //Zizou to the left
-        TranslateAnimation leftAnimation = new TranslateAnimation(0.0f, -400.0f,
+        TranslateAnimation leftAnimation = new TranslateAnimation(xDest/2, -xDest/2,
                 0.0f, 0.0f);
         leftAnimation.setDuration(5000);
         leftAnimation.setRepeatCount(5000);
