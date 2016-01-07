@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/jackrehaag/Desktop/Ogury-github/ZizouApp/app/libs/presage-lib-1.7.2-manual.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e7b2af1c87804c25105647ffae0d11ddcf4cafd0">
+        <dex dex="/Users/jackrehaag/Desktop/Ogury-github/ZizouApp/app/build/intermediates/pre-dexed/debug/presage-lib-1.7.2-manual-0d9802ce5d8181a2c32a8a6eb66277b1aef37395.jar" />
+    </item>
+
+</items>
