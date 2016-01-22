@@ -5,7 +5,7 @@ import android.view.animation.TranslateAnimation;
 /**
  * Created by bdufau on 1/22/2016.
  */
-public class Rotations {
+public class Translations {
     /**
      *
      * @param xDest : destination

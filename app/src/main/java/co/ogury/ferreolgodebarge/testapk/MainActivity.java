@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
         xDest -= (view.getMeasuredWidth()/2);
 
         //Zizou to the right
-        TranslateAnimation rightAnimation = Rotations.toTheSides(xDest,1);
+        TranslateAnimation rightAnimation = Translations.toTheSides(xDest, 1);
         //Zizou to the left
-        TranslateAnimation leftAnimation = Rotations.toTheSides(xDest,-1);
+        TranslateAnimation leftAnimation = Translations.toTheSides(xDest, -1);
 
         // Start animating the image
         left.startAnimation(leftAnimation);
