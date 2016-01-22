@@ -112,26 +112,16 @@ public class MainActivity extends AppCompatActivity {
         final ImageView left = (ImageView) findViewById(R.id.leftZidane);
         final ImageView view = (ImageView) findViewById(R.id.imageView);
 
+        //Calculating metrics
         DisplayMetrics dm = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics( dm );
         int xDest = dm.widthPixels/2;
         xDest -= (view.getMeasuredWidth()/2);
 
         //Zizou to the right
-        TranslateAnimation rightAnimation = new TranslateAnimation(-xDest/2, xDest/2,
-                0.0f, 0.0f);
-        rightAnimation.setDuration(5000);
-        rightAnimation.setRepeatCount(5000);
-        rightAnimation.setRepeatMode(2);
-        rightAnimation.setFillAfter(true);
-
+        TranslateAnimation rightAnimation = Rotations.toTheSides(xDest,1);
         //Zizou to the left
-        TranslateAnimation leftAnimation = new TranslateAnimation(xDest/2, -xDest/2,
-                0.0f, 0.0f);
-        leftAnimation.setDuration(5000);
-        leftAnimation.setRepeatCount(5000);
-        leftAnimation.setRepeatMode(2);
-        leftAnimation.setFillAfter(true);
+        TranslateAnimation leftAnimation = Rotations.toTheSides(xDest,-1);
 
         // Start animating the image
         left.startAnimation(leftAnimation);
