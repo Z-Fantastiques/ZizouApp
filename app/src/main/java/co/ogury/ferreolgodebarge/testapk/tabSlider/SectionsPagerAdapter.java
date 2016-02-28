@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import co.ogury.ferreolgodebarge.testapk.tabFragment.OguryTestAds;
+import co.ogury.ferreolgodebarge.testapk.tabFragment.Soundbox;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -21,6 +22,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         // Fragment selection
+        if (position == 0) {
+            return Soundbox.newInstance();
+        }
         if (position == 1) {
             return OguryTestAds.newInstance();
         } else {

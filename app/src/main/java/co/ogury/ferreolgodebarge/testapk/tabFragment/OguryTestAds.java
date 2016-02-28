@@ -48,36 +48,6 @@ public class OguryTestAds extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        /*
-        //Calling adtoserve on button click
-        Button ad = (Button) this.getActivity().findViewById(R.id.ad);
-        ad.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                Presage.getInstance().adToServe("interstitial", new IADHandler() {
-
-                    @Override
-                    public void onAdNotFound() {
-                        Log.i("PRESAGE", "ad not found");
-                    }
-
-                    @Override
-                    public void onAdFound() {
-                        Log.i("PRESAGE", "ad found");
-                    }
-
-                    @Override
-                    public void onAdClosed() {
-                        Log.i("PRESAGE", "ad closed");
-                    }
-                });
-            }
-        });
-
-        */
-
-
     }
 
     @Override
