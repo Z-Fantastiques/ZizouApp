@@ -1,8 +1,5 @@
 package co.ogury.ferreolgodebarge.testapk.tabFragment;
 
-import android.content.res.AssetFileDescriptor;
-import android.content.res.Resources;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,21 +8,36 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import java.io.IOException;
+
+
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import co.ogury.ferreolgodebarge.testapk.R;
 import co.ogury.ferreolgodebarge.testapk.utils.ISoundPoolLoaded;
 import co.ogury.ferreolgodebarge.testapk.utils.SoundPoolManager;
 
+
 public class Soundbox extends Fragment {
 
+    //Sound list
+    static List<Integer> SOUNDS = new ArrayList<Integer>();
+
+    //Random sound picker
+    private static Random randomGenerator;
 
     public static Soundbox newInstance() {
         Soundbox fragment = new Soundbox();
         Bundle args = new Bundle();
         fragment.setArguments(args);
+
+
+        //Initialize pool tools
+        createPool();
+        randomGenerator = new Random();
+
         return fragment;
     }
 
@@ -37,6 +49,16 @@ public class Soundbox extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+            SoundPoolManager.getInstance().InitializeSoundPool(getActivity(), new ISoundPoolLoaded() {
+                @Override
+                public void onSuccess() {
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -46,32 +68,19 @@ public class Soundbox extends Fragment {
             return null;
         }
 
-
         // Inflate the layout for this fragment
         RelativeLayout ll =  (RelativeLayout)
                 inflater.inflate(R.layout.fragment_soundbox, container, false);
 
-
+        // Images on click
         final ImageView speakingZidane = (ImageView) ll.findViewById(R.id.speakingZidane);
+        speakingZidane.setScaleType(ImageView.ScaleType.FIT_XY);
+
         speakingZidane.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override public void onClick(View v) {
-                        SoundPoolManager.CreateInstance();
-                        final List<Integer> sounds = new ArrayList<Integer>();
-                        sounds.add(R.raw.ballon_en_bois);
-                        SoundPoolManager.getInstance().setSounds(sounds);
-                        try {
-                            SoundPoolManager.getInstance().InitializeSoundPool(getActivity(), new ISoundPoolLoaded() {
-                                @Override
-                                public void onSuccess() {
-                                    SoundPoolManager.getInstance().setPlaySound(true);
-                                    SoundPoolManager.getInstance().playSound(R.raw.ballon_en_bois);
-                                    //TODO Rate of sounds
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        playSound();
                     }
                 }
         );
@@ -79,25 +88,34 @@ public class Soundbox extends Fragment {
         return ll;
     }
 
+    public static void createPool() {
+        //Create
+        SoundPoolManager.CreateInstance();
+        SOUNDS = new ArrayList<Integer>();
+
+        //Sounds
+        SOUNDS.add(R.raw.ballon_en_bois);
+        SOUNDS.add(R.raw.fait_une_main);
+        SOUNDS.add(R.raw.glissant_crampon);
+        SOUNDS.add(R.raw.le_temps);
+        SOUNDS.add(R.raw.prend_rentre);
+        SOUNDS.add(R.raw.ramener_semelle);
+        SOUNDS.add(R.raw.semelle_chambrer);
+        SOUNDS.add(R.raw.souleve);
+
+        //Set OK
+        SoundPoolManager.getInstance().setSounds(SOUNDS);
+        SoundPoolManager.getInstance().setPlaySound(true);
+    }
+
     public void playSound() {
-        //Playable sound
-        final MediaPlayer player = new MediaPlayer();
-        final Resources res = getResources();
+        //Create random and avoid same one as 5 before
+        int index = randomGenerator.nextInt(SOUNDS.size());
 
+        //Find it
+        final Integer item = SOUNDS.get(index);
 
-        AssetFileDescriptor afd = res.openRawResourceFd(R.raw.ballon_en_bois);
-        try {
-            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            player.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            public void onPrepared(MediaPlayer player) {
-                player.start();
-            }
-        });
-
+        //Play it
+            SoundPoolManager.getInstance().playSound(item);
     }
 }

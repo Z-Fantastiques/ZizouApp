@@ -97,7 +97,8 @@ public class SoundPoolManager {
         if (isPlaySound()) {
             SoundSampleEntity entity = hashMap.get(resourceId);
             if (entity.getSampleId() > 0 && entity.isLoaded()) {
-                soundPool.play(entity.getSampleId(), .99f, .99f, 1, 0, 1f);
+                soundPool.play(entity.getSampleId(), .99f, .99f, 1, 0, 0.0f);
+                //0.0f insteas of 1f to make it work
             }
         }
     }
