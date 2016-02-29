@@ -1,4 +1,4 @@
-package co.ogury.ferreolgodebarge.testapk;
+package co.ogury.ferreolgodebarge.testapk.utils;
 
 import android.view.animation.TranslateAnimation;
 
@@ -25,4 +25,5 @@ public class Translations {
 
     }
 
+	
 }

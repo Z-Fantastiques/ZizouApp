@@ -1,4 +1,4 @@
-package co.ogury.ferreolgodebarge.testapk;
+package co.ogury.ferreolgodebarge.testapk.old;
 
 
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
+import co.ogury.ferreolgodebarge.testapk.R;
+import co.ogury.ferreolgodebarge.testapk.utils.Translations;
 import io.presage.Presage;
 import io.presage.utils.IADHandler;
 import android.view.animation.TranslateAnimation;
@@ -22,7 +25,7 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import java.io.IOException;
 
 
-public class MainActivity extends AppCompatActivity {
+public class OldMainActivity extends AppCompatActivity {
 
 
     private String gaid=null;
